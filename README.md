@@ -1,6 +1,7 @@
-# paragon
+# Paragon
 
-A new Flutter project.
+This Flutter project is called Paragon. This project is a roguelike cardgame, inspired by
+the game Balatro.
 
 ## Getting Started
 
