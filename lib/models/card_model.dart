@@ -10,11 +10,12 @@ enum Suit {
  * Rank is the number of the card, linked to its value in the game
  */
 enum Rank {
-  two(2), three(3), four(4), five(5), six(6), seven(7),
-  eight(8), nine(9), ten(10), jockey(10), queen(10), king(10), ace(11);
+  two(2,2), three(3,3), four(4,4), five(5,5), six(6,6), seven(7,7),
+  eight(8,8), nine(9,9), ten(10,10), jockey(10,11), queen(10,12), king(10,13), ace(11,14);
 
   final int value;
-  const Rank(this.value);
+  final int power;
+  const Rank(this.value,this.power);
 
 }
 /**
