@@ -11,7 +11,7 @@ enum Suit {
  */
 enum Rank {
   two(2), three(3), four(4), five(5), six(6), seven(7),
-  eight(8), nine(9), ten(10), jockey(11), queen(12), king(13), ace(14);
+  eight(8), nine(9), ten(10), jockey(10), queen(10), king(10), ace(11);
 
   final int value;
   const Rank(this.value);
@@ -32,9 +32,11 @@ class CardModel {
    */
   String? enchantment;
 
-  CardModel({required this.rank, required this.suit, this.enchantment})
+  CardModel({required this.rank, required this.suit, this.enchantment});
 
   @override
-  String toString() => '${rank.name} of ${suit.name}';
+  String toString() {
+    return '${rank.name} of ${suit.name}';
+  }
 }
 
