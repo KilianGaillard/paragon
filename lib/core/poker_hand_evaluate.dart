@@ -156,26 +156,38 @@ class PokerHandEvaluate {
     return false;
   }
 
-  bool isTwoPair(){
-    Map<int,int> hand_map = generateHandMap();
-    if(hand_map.length==3) {
-      if( (hand_map[0]==2&&hand_map[1]==2) || (hand_map[1]==2&&hand_map[2]==2) || (hand_map[0]==2&&hand_map[2]==2) ){
-        return true;
+  bool isPair(){
+    Map<int, int> hand_map = generateHandMap();
+    bool hasPair = false;
+    int count_p = 0;
+
+    for(int count in hand_map.values){
+      if(count == 2){
+        hasPair = true;
+        count_p++;
       }
-      return false;
+      if(count >= 3){
+        return false;
+      }
     }
-    return false;
+    return count_p==2;
   }
 
   bool isPair(){
-    Map<int,int> hand_map = generateHandMap();
-    if(hand_map.length==4) {
-      if(hand_map[0]==2||hand_map[1]==2||hand_map[2]==2||hand_map[3]==2){
-        return true;
+    Map<int, int> hand_map = generateHandMap();
+    bool hasPair = false;
+    int count_p = 0;
+
+    for(int count in hand_map.values){
+      if(count == 2){
+        hasPair = true;
+        count_p++;
       }
-      return false;
+      if(count >= 3){
+        return false;
+      }
     }
-    return false;
+    return count_p==1;
   }
 
   bool isHighCard(){

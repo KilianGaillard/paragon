@@ -3,7 +3,7 @@ import 'package:paragon/models/deck_model.dart';
 import 'package:paragon/models/card_model.dart';
 
 void main() {
-  group('Tests du DeckModel - Poker Roguelike', () {
+  group('Tests du DeckModel - Paragon', () {
 
     test('Génération d un deck complet de 52 cartes', () {
       final deck = DeckModel();
