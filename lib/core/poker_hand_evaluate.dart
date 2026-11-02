@@ -64,7 +64,13 @@ class PokerHandEvaluate {
       i++;
     }
     if(count==5){
-      return true;
+      if(isStraight()){
+        if(hand.cards.first.rank.power==14){
+          return false;
+        }
+        return true;
+      }
+      return false;
     }
     else {
       return false;
@@ -118,7 +124,10 @@ class PokerHandEvaluate {
       }
     }
     if(count==5){
-      return true;
+      if(!isStraight()){
+        return true;
+      }
+      return false;
     }
     else {
       return false;

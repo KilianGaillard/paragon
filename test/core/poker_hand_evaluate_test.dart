@@ -66,6 +66,8 @@ void main() {
 
       expect(evaluator.isRoyalFlush(), isTrue,
           reason: "La main doit correspondre à une Quinte Flush Royale.");
+      expect(evaluator.isStraightFlush(), isFalse,
+          reason: "La main ne doit pas correspondre à une Quinte Flush.");
     });
 
     test('Évaluation d une Full House', () {
@@ -106,7 +108,7 @@ void main() {
           reason: "La main doit correspondre à une Suite.");
     });
 
-    test('Évaluation d une Quinte Flush', () {
+    test('Évaluation d une Couleur', () {
       final hand = HandModel(cards : [
         CardModel(suit: Suit.spades, rank: Rank.ace),
         CardModel(suit: Suit.spades, rank: Rank.king),
@@ -120,7 +122,27 @@ void main() {
       expect(evaluator.isRoyalFlush(), isFalse,
           reason: "La main ne doit pas correspondre à une Quinte Flush Royale.");
       expect(evaluator.isFlush(), isTrue,
-          reason: "La main doit correspondre à une Quinte Flush.");
+          reason: "La main doit correspondre à une Couleur.");
+    });
+
+
+    test('Évaluation d une Quinte Flush', () {
+      final hand = HandModel(cards : [
+        CardModel(suit: Suit.spades, rank: Rank.king),
+        CardModel(suit: Suit.spades, rank: Rank.queen),
+        CardModel(suit: Suit.spades, rank: Rank.jack),
+        CardModel(suit: Suit.spades, rank: Rank.ten),
+        CardModel(suit: Suit.spades, rank: Rank.nine),
+      ]);
+
+      final evaluator = PokerHandEvaluate(hand: hand);
+
+      expect(evaluator.isRoyalFlush(), isFalse,
+          reason: "La main ne doit pas correspondre à une Quinte Flush Royale.");
+      expect(evaluator.isFlush(), isFalse,
+          reason: "La main ne doit pas correspondre à une couleur.");
+      expect(evaluator.isStraightFlush(), isTrue,
+          reason: "La main doit correspondre à une Quinte FLush.");
     });
   });
 }
