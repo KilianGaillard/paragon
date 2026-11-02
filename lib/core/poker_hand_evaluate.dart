@@ -91,17 +91,19 @@ class PokerHandEvaluate {
   }
 
   bool isFullHouse(){
-    if(hand.cards.length==5){
-      Map<int,int> hand_map = generateHandMap();
-      if(hand_map.length==2){
-        if(hand_map[0]==3||hand_map[1]==3){
-          return true;
-        }
-      } else {
-        return false;
+    Map<int, int> hand_map = generateHandMap();
+    bool hasThree = false;
+    bool hasPair = false;
+
+    for(int count in hand_map.values){
+      if(count == 3){
+        hasThree = true;
+      }
+      if(count == 2){
+        hasPair = true;
       }
     }
-    return false;
+    return hasThree&&hasPair;
   }
 
   bool isFlush(){
@@ -145,18 +147,28 @@ class PokerHandEvaluate {
   }
 
   bool isThreeOfAKind(){
-    Map<int,int> hand_map = generateHandMap();
-    if(hand_map.length==3){
-      if(hand_map[0]==3||hand_map[1]==3||hand_map[2]==3){
-        return true;
+    Map<int, int> hand_map = generateHandMap();
+    bool hasThree = false;
+    bool hasPair = false;
+
+    for(int count in hand_map.values){
+      if(count == 3){
+        hasThree = true;
       }
-    } else {
+      if(count == 2){
+        hasPair = true;
+      }
+      if(count >= 4){
+        return false;
+      }
+    }
+    if(hasPair){
       return false;
     }
-    return false;
+    return hasThree;
   }
 
-  bool isPair(){
+  bool isTwoPairs(){
     Map<int, int> hand_map = generateHandMap();
     bool hasPair = false;
     int count_p = 0;

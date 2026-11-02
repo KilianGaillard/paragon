@@ -67,5 +67,26 @@ void main() {
       expect(evaluator.isRoyalFlush(), isTrue,
           reason: "La main doit correspondre à une Quinte Flush Royale.");
     });
+
+    test('Évaluation d une Full House', () {
+      final hand = HandModel(cards : [
+        CardModel(suit: Suit.spades, rank: Rank.ace),
+        CardModel(suit: Suit.clubs, rank: Rank.ace),
+        CardModel(suit: Suit.diamonds, rank: Rank.ace),
+        CardModel(suit: Suit.hearts, rank: Rank.jack),
+        CardModel(suit: Suit.spades, rank: Rank.jack),
+      ]);
+
+      final evaluator = PokerHandEvaluate(hand: hand);
+
+      expect(evaluator.isFullHouse(), isTrue,
+          reason: "La main doit correspondre à une Full House.");
+      expect(evaluator.isThreeOfAKind(), isFalse,
+          reason: "La main doit compter une Full House pas un Brelan");
+      expect(evaluator.isTwoPairs(), isFalse,
+          reason: "La main doit compter une Full House pas une Double Paire");
+      expect(evaluator.isPair(), isFalse,
+          reason: "La main doit compter une Full House pas une Paire");
+    });
   });
 }
