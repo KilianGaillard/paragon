@@ -147,11 +147,47 @@ class PokerHandEvaluate {
   bool isThreeOfAKind(){
     Map<int,int> hand_map = generateHandMap();
     if(hand_map.length==3){
-      if(hand_map[0]==3||hand_map[1]==3){
+      if(hand_map[0]==3||hand_map[1]==3||hand_map[2]==3){
         return true;
       }
     } else {
       return false;
+    }
+    return false;
+  }
+
+  bool isTwoPair(){
+    Map<int,int> hand_map = generateHandMap();
+    if(hand_map.length==3) {
+      if( (hand_map[0]==2&&hand_map[1]==2) || (hand_map[1]==2&&hand_map[2]==2) || (hand_map[0]==2&&hand_map[2]==2) ){
+        return true;
+      }
+      return false;
+    }
+    return false;
+  }
+
+  bool isPair(){
+    Map<int,int> hand_map = generateHandMap();
+    if(hand_map.length==4) {
+      if(hand_map[0]==2||hand_map[1]==2||hand_map[2]==2||hand_map[3]==2){
+        return true;
+      }
+      return false;
+    }
+    return false;
+  }
+
+  bool isHighCard(){
+    Map<int,int> hand_map = generateHandMap();
+    int max = 0;
+    if(hand_map.isNotEmpty){
+      for(int count in hand_map.values){
+        if(count > max){
+          max = count;
+        }
+      }
+      return max==1;
     }
     return false;
   }
